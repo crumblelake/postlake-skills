@@ -15,21 +15,37 @@ Each platform is attempted independently and the response reports per-platform
 Authorization: Bearer $POSTLAKE_API_KEY
 ```
 
-Base URL `https://api.postlake.dev`. Get the account ids to post to from the
-`postlake-accounts` skill (`GET /v1/social-accounts`).
+Base URL `https://api.postlake.dev`.
+
+## Choosing where to post
+
+Two ways to say which accounts a post goes to — pick whichever is simpler:
+
+- **By profile (simplest)** — a profile is a named group of connected accounts
+  (a brand, a client, "me"). Pass `"profile": "my-brand"` and it posts to every
+  account in it. Add `"platforms": ["bluesky","linkedin"]` to narrow it to
+  certain networks. No id lookup needed.
+- **By account id (precise)** — pass `"accounts": ["acc_…"]` for exact accounts.
+  Get the ids from the `postlake-accounts` skill (`GET /v1/social-accounts`).
+
+Provide `profile`, `accounts`, or both. At least one is required.
 
 ## Publish
 
 ```bash
+# Simplest: post to a whole profile.
 curl -X POST https://api.postlake.dev/v1/posts \
   -H "Authorization: Bearer $POSTLAKE_API_KEY" \
   -H "Content-Type: application/json" \
   -H "Idempotency-Key: $(uuidgen)" \
   -d '{
     "text": "Shipping something new today 🚀",
-    "accounts": ["acc_84a4…", "acc_e553…"]
+    "profile": "my-brand"
   }'
 ```
+
+To hit specific networks in that profile add `"platforms": ["bluesky"]`; to
+target exact accounts use `"accounts": ["acc_84a4…","acc_e553…"]` instead.
 
 Response (normalised — reason over `targets`):
 

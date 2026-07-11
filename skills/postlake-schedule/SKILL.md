@@ -7,7 +7,9 @@ description: Schedule a social media post for a future time through PostLake, an
 
 Scheduling is the same as publishing, plus a `scheduledAt` timestamp. Prefer
 scheduling over immediate publishing when the user gives a time, so they can
-review the queue first.
+review the queue first. Address accounts exactly as in the `postlake-publish`
+skill — by `profile` (simplest, optionally narrowed with `platforms`) or by
+`accounts` ids.
 
 ## Auth
 
@@ -29,7 +31,7 @@ curl -X POST https://api.postlake.dev/v1/posts \
   -H "Idempotency-Key: $(uuidgen)" \
   -d '{
     "text": "Weekly recap 👇",
-    "accounts": ["acc_84a4…", "acc_e553…"],
+    "profile": "my-brand",
     "scheduledAt": "2026-07-18T08:00:00Z"
   }'
 ```

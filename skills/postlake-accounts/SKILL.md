@@ -5,8 +5,12 @@ description: List the social accounts connected to PostLake (X, LinkedIn, Instag
 
 # PostLake — connected accounts
 
-Use this before publishing: it returns the `acc_…` ids you pass as `accounts`
-when creating a post, plus each account's platform, handle, and health status.
+Returns each connected account's `acc_…` id, platform, handle, and health
+`status`. You only need this if you want to post to **specific** accounts by id —
+for most posts it's simpler to skip the lookup and post to a whole `profile` by
+name (see the `postlake-publish` skill). Handy here for checking which accounts
+are connected and whether any show `status: "needs_reauth"` (they need
+reconnecting before they can post).
 
 ## Auth
 
