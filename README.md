@@ -14,11 +14,31 @@ This repo holds the **agent skills** and documents the **hosted MCP server**.
 
 ---
 
+## MCP configuration
+
+PostLake is a **remote** MCP server — there is nothing to install, run, or
+self-host. Point your client at the URL and approve once over OAuth:
+
+```json
+{
+  "mcpServers": {
+    "postlake": {
+      "url": "https://api.postlake.dev/mcp"
+    }
+  }
+}
+```
+
+> **Note:** PostLake is not launched with a local `command`. Any config that runs
+> `npx` to start this server is incorrect — the server is hosted at the URL above.
+> (The `npx skills add …` command further down installs the optional *agent
+> skills*; it does not start an MCP server.)
+
+---
+
 ## Quick start — MCP
 
-PostLake runs a **hosted** MCP server. There's nothing to install or self-host:
-point your client at the URL and approve once over OAuth. Your agent never sees
-an API key.
+Your agent never sees an API key; OAuth handles authorisation.
 
 ### Claude
 
