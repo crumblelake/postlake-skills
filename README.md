@@ -110,7 +110,7 @@ For coding agents (Claude Code, Cursor, Codex, Windsurf) that use file-based
 skills rather than MCP:
 
 ```bash
-npx skills add crumblelake/postlake-skills --all
+npx skills add postlake/postlake-mcp --all
 ```
 
 | Skill | What your agent can do |
